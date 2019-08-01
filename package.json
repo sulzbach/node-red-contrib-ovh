@@ -1,0 +1,58 @@
+{
+  "_from": "node-red-contrib-ovh",
+  "_id": "node-red-contrib-ovh@1.0.1",
+  "_inBundle": false,
+  "_integrity": "sha1-iFvj4ASdytrLUfgSYY8VuGbAfPo=",
+  "_location": "/node-red-contrib-ovh",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "node-red-contrib-ovh",
+    "name": "node-red-contrib-ovh",
+    "escapedName": "node-red-contrib-ovh",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/node-red-contrib-ovh/-/node-red-contrib-ovh-1.0.0.tgz",
+  "_shasum": "885be3e0049dcadacb51f812618f15b866c07cfa",
+  "_spec": "node-red-contrib-ovh",
+  "_where": "/Users/sulzbach/Documents/git",
+  "author": {
+    "name": "Cristiano Jose Sulzbach",
+    "email": "cristiano@sulzbach.org"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "ovh": "^2.0.1"
+  },
+  "deprecated": false,
+  "description": "Access OVH API",
+  "homepage": "https://github.com/sulzbach/node-red-contrib-ovh",
+  "keywords": [
+    "node-red",
+    "OVH",
+    "API"
+  ],
+  "license": "ISC",
+  "name": "node-red-contrib-ovh",
+  "node-red": {
+    "nodes": {
+      "ovh_api": "nodes/ovh_api.js",
+      "ovh_cred": "nodes/config/ovh_credentials.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sulzbach/node-red-contrib-ovh"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}

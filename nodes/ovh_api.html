@@ -1,0 +1,72 @@
+<script type="text/x-red" data-template-name="ovh_api">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-topic"><i class="fa fa-tasks"></i> Topic</label>
+        <input type="text" id="node-input-topic" placeholder="Topic">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-auth"><i class="fa fa-globe"></i><span> Configuration</span></label>
+        <input type="text" id="node-input-auth">
+    </div>
+
+    <div class="form-row">
+        <label for="node-config-input-from"><i class="fa fa-user"></i> <span>Sender</span></label>
+        <input type="text" id="node-input-from">
+    </div>
+
+</script>
+
+<script type="text/x-red" data-help-name="ovh_api">
+    <p>Access the OVH API.</p>
+    <p>You will first need to get API keys from OVH before accessinf the API.</p>
+
+    <h3>Inputs</h3>
+        <dl class="message-properties">
+            <dt>payload
+                <span class="property-type">string</span>
+            </dt>
+            <dd> the SMS content </dd>
+        </dl>
+    <h3>Outputs</h3>
+        <li>Standard output
+            <dl class="message-properties">
+                <dt>sent <span class="property-type">boolean</span></dt>
+                <dd>return if the message is sent or not</dd>
+            </dl>
+        </li>
+    <h3>Details</h3>
+        <p><code>msg.payload</code> is used as the SMS content.
+        <p>The topic used can be configured in the node or, if left blank, can be set
+        by <code>msg.topic</code>.</p>
+        <p>The number and sender are mandatory, but if they are defined by <code>msg.number</code> (if the
+         number is valid) and <code>msg.sender</code>, they will be override.</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('ovh_api', {
+        category: 'function',
+        defaults: {
+            name: { value: "" },
+            topic: { value: "" },
+            auth: { type: "ovh-credentials", required: true },
+        },
+        color: "#DDDDDD",
+        inputs: 1,               // set the number of inputs - only 0 or 1
+        outputs: 1,              // set the number of outputs - 0 to n
+        icon: "ovh.png",     // saved in icons/
+        label: function () {     // sets the default label contents
+            return this.name || "Access OVH API";
+        },
+        labelStyle: function () { // sets the class to apply to the label
+            return this.name ? "node_label_italic" : "";
+        },
+        inputLabels: "Msg containing method and URL",
+        outputLabels: "Result of the request"
+    });
+
+</script>
