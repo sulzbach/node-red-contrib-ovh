@@ -1,6 +1,6 @@
 {
   "_from": "node-red-contrib-ovh",
-  "_id": "node-red-contrib-ovh@1.0.1",
+  "_id": "node-red-contrib-ovh@1.0.0",
   "_inBundle": false,
   "_integrity": "sha1-iFvj4ASdytrLUfgSYY8VuGbAfPo=",
   "_location": "/node-red-contrib-ovh",
@@ -19,10 +19,6 @@
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/node-red-contrib-ovh/-/node-red-contrib-ovh-1.0.0.tgz",
-  "_shasum": "885be3e0049dcadacb51f812618f15b866c07cfa",
-  "_spec": "node-red-contrib-ovh",
-  "_where": "/Users/sulzbach/Documents/git",
   "author": {
     "name": "Cristiano Jose Sulzbach",
     "email": "cristiano@sulzbach.org"

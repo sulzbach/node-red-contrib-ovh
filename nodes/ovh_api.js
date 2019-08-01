@@ -3,7 +3,7 @@ module.exports = function (RED) {
 
     const OVH = require("ovh");
 
-    function ovh_node(n) {
+    function ovh_api_node(n) {
         RED.nodes.createNode(this, n);
 
         let cred = RED.nodes.getNode(n.auth)
