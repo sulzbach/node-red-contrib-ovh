@@ -31,9 +31,9 @@ module.exports = function (RED) {
             }, function (errsend, result) {
                 if (errsend) {
                     node.error(errsend + " " + result)
-                    node.send({ topic: n.topic, sent: false, payload: result, method: msg.method });
+                    node.send({ topic: n.topic || "", sent: false, payload: result, method: msg.method });
                 } else {
-                    node.send({ topic: n.topic, sent: true, payload: result, method: msg.method });
+                    node.send({ topic: n.topic || "", sent: true, payload: result, method: msg.method });
                 }
             });
 
