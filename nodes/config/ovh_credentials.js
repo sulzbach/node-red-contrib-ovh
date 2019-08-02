@@ -8,6 +8,7 @@ module.exports = function (RED) {
 
     RED.nodes.registerType("ovh-credentials", ovhCredentialsNode, {
         credentials: {
+            endpoint: {},
             api_key: { type: "password" },
             api_secret: { type: "password" },
             csm_key: { type: "password" }

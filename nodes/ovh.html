@@ -1,4 +1,4 @@
-<script type="text/x-red" data-template-name="ovh_api">
+<script type="text/x-red" data-template-name="ovh">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -21,7 +21,7 @@
 
 </script>
 
-<script type="text/x-red" data-help-name="ovh_api">
+<script type="text/x-red" data-help-name="ovh">
     <p>Access the OVH API.</p>
     <p>You will first need to get API keys from OVH before accessinf the API.</p>
 
@@ -43,12 +43,10 @@
         <p><code>msg.payload</code> is used as the SMS content.
         <p>The topic used can be configured in the node or, if left blank, can be set
         by <code>msg.topic</code>.</p>
-        <p>The number and sender are mandatory, but if they are defined by <code>msg.number</code> (if the
-         number is valid) and <code>msg.sender</code>, they will be override.</p>
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('ovh_api', {
+    RED.nodes.registerType('ovh', {
         category: 'function',
         defaults: {
             name: { value: "" },
@@ -56,13 +54,13 @@
             auth: { type: "ovh-credentials", required: true },
         },
         color: "#DDDDDD",
-        inputs: 1,               // set the number of inputs - only 0 or 1
-        outputs: 1,              // set the number of outputs - 0 to n
-        icon: "ovh.png",     // saved in icons/
-        label: function () {     // sets the default label contents
+        inputs: 1,
+        outputs: 1,
+        icon: "ovh.png",
+        label: function () {
             return this.name || "Access OVH API";
         },
-        labelStyle: function () { // sets the class to apply to the label
+        labelStyle: function () {
             return this.name ? "node_label_italic" : "";
         },
         inputLabels: "Msg containing method and URL",

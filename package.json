@@ -39,7 +39,7 @@
   "name": "node-red-contrib-ovh",
   "node-red": {
     "nodes": {
-      "ovh_api": "nodes/ovh_api.js",
+      "ovh": "nodes/ovh.js",
       "ovh_cred": "nodes/config/ovh_credentials.js"
     }
   },
