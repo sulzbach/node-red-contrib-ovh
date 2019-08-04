@@ -9,10 +9,6 @@ module.exports = function (RED) {
         let cred = RED.nodes.getNode(config.auth)
         let node = this;
 
-        // node.topic = node.topic | "";
-        // node.method = node.method | "";
-        // node.url = node.url | "";
-
         this.ovh = OVH({
             endpoint: cred.credentials.endpoint,
             appKey: cred.credentials.api_key,
@@ -67,6 +63,6 @@ module.exports = function (RED) {
         });
     }
 
-    RED.nodes.registerType("ovh", ovh_api_node);
+    RED.nodes.registerType("ovh api", ovh_api_node);
 
 }
