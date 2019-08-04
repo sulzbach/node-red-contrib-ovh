@@ -3,11 +3,15 @@ module.exports = function (RED) {
 
     const OVH = require("ovh");
 
-    function ovh_api_node(n) {
-        RED.nodes.createNode(this, n);
+    function ovh_api_node(config) {
+        RED.nodes.createNode(this, config);
 
-        let cred = RED.nodes.getNode(n.auth)
+        let cred = RED.nodes.getNode(config.auth)
         let node = this;
+
+        // node.topic = node.topic | "";
+        // node.method = node.method | "";
+        // node.url = node.url | "";
 
         this.ovh = OVH({
             endpoint: cred.credentials.endpoint,
@@ -27,31 +31,39 @@ module.exports = function (RED) {
         })
 
         this.on('input', function (msg) {
-            this.ovh.request(msg.method, msg.url, {
-            }, function (errsend, result) {
+
+            var topic = msg.topic;
+            if (topic === undefined || topic === null || topic === "") {
+                topic = config.topic || "";
+            }
+            
+            var method = msg.method;
+            if (method === undefined || method === null || method === "") {
+                method = config.method;
+            }
+
+            var url = msg.url;
+            if (url === undefined || url === null || url === "") {
+                url = config.url;
+            }
+
+            var params = msg.params;
+            if (params === undefined || params === null || params === "") {
+                params = config.params;
+            }
+
+            console.log(method)
+            console.log(url)
+            console.log(params)
+
+            this.ovh.request(method, url, params, function (errsend, result) {
                 if (errsend) {
                     node.error(errsend + " " + result)
-                    node.send({ topic: n.topic || "", sent: false, payload: result, method: msg.method });
+                    node.send({ topic: topic, sent: false, payload: result });
                 } else {
-                    node.send({ topic: n.topic || "", sent: true, payload: result, method: msg.method });
+                    node.send({ topic: topic, sent: true, payload: result });
                 }
             });
-
-            // this.on('input', function (msg) {
-            //     this.ovh.request('GET', '/sms/' + this.serviceName + '/jobs/', {
-            //         message: msg.payload,
-            //         sender: (msg.hasOwnProperty("from") && typeof (msg.from) === "string") ? msg.from : this.from,
-            //         receivers: [(msg.hasOwnProperty("number") && typeof (msg.number) === "string" && msg.number.match(/^\+?[1-9]\d{1,14}$/) !== null) ? msg.number : this.number],
-            //         noStopClause: this.noStopClause
-            //     }, function (errsend, result) {
-            //         if (errsend) {
-            //             node.error(errsend + " " + result)
-            //             node.send({ topic: this.topic, sent: false });
-            //         } else {
-            //             node.send({ topic: this.topic, sent: true });
-            //         }
-            //     });
-    
 
         });
     }

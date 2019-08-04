@@ -1,16 +1,36 @@
 <script type="text/x-red" data-template-name="ovh">
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <label for="node-input-name"><i class="fa fa-tag"></i>Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
 
     <div class="form-row">
-        <label for="node-input-topic"><i class="fa fa-tasks"></i> Topic</label>
+        <label for="node-input-topic"><i class="fa fa-tasks"></i>Topic</label>
         <input type="text" id="node-input-topic" placeholder="Topic">
     </div>
 
     <div class="form-row">
-        <label for="node-input-auth"><i class="fa fa-globe"></i><span> Configuration</span></label>
+        <label for="node-input-method"><i class="fa fa-lock"></i><span>Method</span></label>
+        <select id="node-input-method">
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-url"><i class="fa fa-tasks"></i>URL</label>
+        <input type="text" id="node-input-url" placeholder="URL">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-url"><i class="fa fa-tasks"></i>Parameters</label>
+        <input type="text" id="node-input-params" placeholder="params">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-auth"><i class="fa fa-globe"></i><span>Configuration</span></label>
         <input type="text" id="node-input-auth">
     </div>
 
@@ -18,14 +38,22 @@
 
 <script type="text/x-red" data-help-name="ovh">
     <p>Access the OVH API.</p>
-    <p>You will first need to get API keys from OVH before accessinf the API.</p>
+    <p>You will first need to get API keys from OVH before accessing the API.</p>
 
     <h3>Inputs</h3>
         <dl class="message-properties">
-            <dt>payload
+            <dt>Endpoint
                 <span class="property-type">string</span>
             </dt>
-            <dd> the SMS content </dd>
+            <dd> the Endpoint of the API </dd>
+            <dt>Method
+                <span class="property-type">string</span>
+            </dt>
+            <dd> the METHOD of the API </dd>
+            <dt>URL
+                <span class="property-type">string</span>
+            </dt>
+            <dd> the URL of the API </dd>
         </dl>
     <h3>Outputs</h3>
         <li>Standard output
@@ -35,17 +63,21 @@
             </dl>
         </li>
     <h3>Details</h3>
-        <p><code>msg.payload</code> is used as the SMS content.
         <p>The topic used can be configured in the node or, if left blank, can be set
         by <code>msg.topic</code>.</p>
-</script>
+        <p><code>msg.method</code> is used as the HTTP method.
+        <p><code>msg.url</code> is used as the HTTP url.
+    </script>
 
 <script type="text/javascript">
     RED.nodes.registerType('ovh', {
-        category: 'function',
+        category: 'ovh',
         defaults: {
             name: { value: "" },
             topic: { value: "" },
+            method: { value: "GET", required: true },
+            url: { value: "/me" },
+            params: { type: "object", value: {} },
             auth: { type: "ovh-credentials", required: true },
         },
         color: "#DDDDDD",
