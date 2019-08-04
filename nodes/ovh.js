@@ -52,16 +52,15 @@ module.exports = function (RED) {
                 params = config.params;
             }
 
-            console.log(method)
-            console.log(url)
-            console.log(params)
-
             this.ovh.request(method, url, params, function (errsend, result) {
+                msg.payload = result;
                 if (errsend) {
                     node.error(errsend + " " + result)
-                    node.send({ topic: topic, sent: false, payload: result });
+                    msg.sent = false;
+                    node.send(msg);
                 } else {
-                    node.send({ topic: topic, sent: true, payload: result });
+                    msg.sent = true;
+                    node.send(msg);
                 }
             });
 
